@@ -40,3 +40,5 @@ export type MovieSearch = {
   totalResults: string;
   Response: string;
 };
+
+export type QueryType = "s" | "i" | "t";
