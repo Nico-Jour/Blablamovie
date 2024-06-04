@@ -5,7 +5,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from "@mui/material/TextField";
-import * as React from "react";
 import { useContext, useState } from "react";
 import { postLogin } from "../APIs/MovieRaterApi/postLogin";
 import { createUser } from "../APIs/MovieRaterApi/postUser";
