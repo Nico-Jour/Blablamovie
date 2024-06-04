@@ -27,7 +27,7 @@ export default function FormDialogUser() {
 
   const handleLogin = async () => {
     const [user] = await postLogin(pseudo ?? "");
-    console.log("user", user);
+
     if (user) setUser({ pseudo: user.pseudo, _id: user._id });
     setOpen(false);
   };

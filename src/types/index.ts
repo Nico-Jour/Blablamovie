@@ -65,3 +65,8 @@ export type UserContextType = {
   user: User | User;
   setUser: Dispatch<React.SetStateAction<User | null>>;
 };
+
+export type MovieSimple = {
+  title: string;
+  poster: string;
+};

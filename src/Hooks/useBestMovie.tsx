@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { getBestMovie } from "../APIs/MovieRaterApi/getBestMovie";
-
-type MovieSimple = {
-  title: string;
-  poster: string;
-};
+import { MovieSimple } from "../types";
 
 const useBestMovie = () => {
   const [movie, setMovies] = useState<MovieSimple | null>();
