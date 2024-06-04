@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { Movie } from "../types";
+import { MoviePreview } from "../types";
 
-export default function MovieCard({ movie }: { movie: Movie }) {
+export default function MovieCard({ movie }: { movie: MoviePreview }) {
   return (
     <Box>
       <img src={movie.Poster} />

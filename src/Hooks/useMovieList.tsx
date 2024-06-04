@@ -3,7 +3,7 @@ import { getMovieList } from "../APIs/movieApi";
 import { MovieSearch } from "../types";
 
 const useMovieList = () => {
-  const [movies, setMovies] = useState<MovieSearch[]>([]);
+  const [movies, setMovies] = useState<MovieSearch | null>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | Error>(null);
 

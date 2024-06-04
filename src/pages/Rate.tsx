@@ -11,7 +11,7 @@ export default function Rate() {
       {loading ? (
         <Loading />
       ) : (
-        movies.Search.map((movie) => <MovieCard movie={movie} />)
+        movies?.Search.map((movie) => <MovieCard movie={movie} />)
       )}
     </Box>
   );

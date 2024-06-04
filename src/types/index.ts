@@ -26,15 +26,17 @@ export type Movie = {
   Response: boolean;
 };
 
+export type MoviePreview = {
+  Title: string;
+  Year: string;
+  Poster: string;
+  Ratings: Array<{ source: string; value: string }>;
+  imdbID: string;
+  Type: string;
+};
+
 export type MovieSearch = {
-  Search: {
-    Title: string;
-    Year: string;
-    Poster: string;
-    Ratings: Array<{ source: string; value: string }>;
-    imdbID: string;
-    Type: string;
-  }[];
+  Search: MoviePreview[];
   totalResults: string;
   Response: string;
 };
