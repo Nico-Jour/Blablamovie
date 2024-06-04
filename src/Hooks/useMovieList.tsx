@@ -5,7 +5,7 @@ import { MovieSearch } from "../types";
 const useMovieList = (query: string) => {
   const [movies, setMovies] = useState<MovieSearch | null>();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<null | Error>(null);
+  const [error, setError] = useState<null | Error | OmdbError>(null);
 
   useEffect(() => {
     fetchMovies();
@@ -14,7 +14,14 @@ const useMovieList = (query: string) => {
   const fetchMovies = async () => {
     try {
       const movieData = await getMovieList("s", query);
-      setMovies(movieData);
+      console.log("movieData.Response", movieData.Response);
+      if (movieData.Response === "True") {
+        setMovies(movieData);
+        setError(null);
+      } else {
+        setError(movieData);
+        setMovies(null);
+      }
     } catch (err) {
       setError(err as Error);
     } finally {

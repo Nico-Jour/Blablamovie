@@ -42,3 +42,8 @@ export type MovieSearch = {
 };
 
 export type QueryType = "s" | "i" | "t";
+
+export type OmdbError = {
+  Error: string;
+  Response: false;
+};

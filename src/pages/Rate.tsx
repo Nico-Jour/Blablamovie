@@ -1,4 +1,11 @@
-import { Box, Container, FormControl, Input, InputLabel } from "@mui/material";
+import {
+  Box,
+  Container,
+  FormControl,
+  Input,
+  InputLabel,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import Loading from "../Components/Loading";
 import MovieCard from "../Components/MovieCard";
@@ -6,13 +13,12 @@ import useMovieList from "../Hooks/useMovieList";
 
 export default function Rate() {
   const [search, setSearch] = useState("love");
-  const { movies, loading } = useMovieList(search);
+  const { movies, loading, error } = useMovieList(search);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       setSearch(event.currentTarget.value);
     }
-    console.log("event.key", event.key);
   };
 
   return (
@@ -30,6 +36,8 @@ export default function Rate() {
       <Box>
         {loading ? (
           <Loading />
+        ) : error ? (
+          <Typography>{error?.Error}</Typography>
         ) : (
           movies?.Search.map((movie) => <MovieCard movie={movie} />)
         )}
