@@ -17,6 +17,7 @@ function useCountdown() {
   const msPerMinutes = 60 * msPerSeconds;
   const msPerHours = 60 * msPerMinutes;
   const msPerDay = 24 * msPerHours;
+  const offset = 30000;
 
   const msDaysLeft = deadLine / msPerDay;
   const daysLeft = Math.round(msDaysLeft);
@@ -27,7 +28,7 @@ function useCountdown() {
   const msMinutesLeft = msHoursLeft % msPerHours;
   const minutesLeft = Math.round(msMinutesLeft / msPerMinutes);
 
-  const msSecondsLeft = (msMinutesLeft + 30000) % msPerMinutes;
+  const msSecondsLeft = (msMinutesLeft + offset) % msPerMinutes;
   const secondsLeft = Math.round(msSecondsLeft / msPerSeconds);
 
   return { daysLeft, hoursLeft, minutesLeft, secondsLeft };

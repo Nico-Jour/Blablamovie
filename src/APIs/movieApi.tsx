@@ -1,4 +1,4 @@
-import axiosOmdb from "./axiosConfig";
+import axiosOmdb from "./omdbAxiosConfig";
 
 export const getMovieList = async () => {
   try {

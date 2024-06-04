@@ -1,7 +1,11 @@
 import { Box, Button, Container, Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 import CountDown from "../Components/CountDown";
+import ProvisoryBestMovie from "../Components/ProvisoryBestMovie";
 
 export default function HomeLayout() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Typography variant="h1" gutterBottom>
@@ -19,8 +23,10 @@ export default function HomeLayout() {
         gap="6"
         sx={{ py: 10 }}
       >
-        <Button variant="outlined">See the provisory best movie</Button>
-        <Button variant="contained">Vote for your favorites</Button>
+        <ProvisoryBestMovie />
+        <Button variant="contained" onClick={() => navigate("/rate")}>
+          Vote for your favorite movies
+        </Button>
       </Box>
     </Container>
   );

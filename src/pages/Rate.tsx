@@ -4,7 +4,7 @@ import MovieCard from "../Components/MovieCard";
 import useMovieList from "../Hooks/useMovieList";
 
 export default function Rate() {
-  const { movies, loading, error } = useMovieList();
+  const { movies, loading } = useMovieList();
   console.log("movies", movies);
   return (
     <Box>
