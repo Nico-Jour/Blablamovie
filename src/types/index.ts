@@ -47,3 +47,9 @@ export type OmdbError = {
   Error: string;
   Response: false;
 };
+
+export type NewUser = {
+  pseudo: string;
+  email: string;
+  dateOfBirth: Date;
+};

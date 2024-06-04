@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
-import { patchMovieId } from "../APIs/MovieRaterApi/postMovieId";
+import { patchMovieId } from "../APIs/MovieRaterApi/patchMovieId";
 import { MoviePreview } from "../types";
 
 export default function MovieCard({ movie }: { movie: MoviePreview }) {

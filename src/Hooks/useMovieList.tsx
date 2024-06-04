@@ -14,7 +14,6 @@ const useMovieList = (query: string) => {
   const fetchMovies = async () => {
     try {
       const movieData = await getMovieList("s", query);
-      console.log("movieData.Response", movieData.Response);
       if (movieData.Response === "True") {
         setMovies(movieData);
         setError(null);
