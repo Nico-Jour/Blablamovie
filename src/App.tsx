@@ -1,7 +1,22 @@
+import { useState } from "react";
 import MainLayout from "./Layouts/MainLayout";
 
+import { createContext } from "react";
+import { UserContextType } from "./types";
+
+export const UserContext = createContext<UserContextType>({
+  user: null,
+  setUser: () => {},
+});
+
 function App() {
-  return <MainLayout />;
+  const [user, setUser] = useState<null | string>(null);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <MainLayout />
+    </UserContext.Provider>
+  );
 }
 
 export default App;

@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export type Movie = {
   Title: string;
   Year: string;
@@ -52,4 +54,14 @@ export type NewUser = {
   pseudo: string;
   email: string;
   dateOfBirth: Date;
+};
+
+export type User = {
+  pseudo: string;
+  _id: string;
+};
+
+export type UserContextType = {
+  user: User | User;
+  setUser: Dispatch<React.SetStateAction<User | null>>;
 };
