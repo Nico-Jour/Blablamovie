@@ -1,12 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { patchMovieId } from "../APIs/MovieRaterApi/patchMovieId";
+import { UserContext } from "../App";
 import { MoviePreview } from "../types";
 
 export default function MovieCard({ movie }: { movie: MoviePreview }) {
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
   const handleOnCLick = () => {
-    patchMovieId(movie.imdbID);
+    patchMovieId(user._id, movie.imdbID);
   };
 
   return (
