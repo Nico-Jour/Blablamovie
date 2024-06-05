@@ -17,19 +17,18 @@ function useCountdown() {
   const msPerMinutes = 60 * msPerSeconds;
   const msPerHours = 60 * msPerMinutes;
   const msPerDay = 24 * msPerHours;
-  const offset = 30000;
 
   const msDaysLeft = deadLine / msPerDay;
-  const daysLeft = Math.round(msDaysLeft);
+  const daysLeft = Math.floor(msDaysLeft);
 
   const msHoursLeft = deadLine % (daysLeft * msPerDay);
-  const hoursLeft = Math.round(msHoursLeft / msPerHours);
+  const hoursLeft = Math.floor(msHoursLeft / msPerHours);
 
   const msMinutesLeft = msHoursLeft % msPerHours;
-  const minutesLeft = Math.round(msMinutesLeft / msPerMinutes);
+  const minutesLeft = Math.floor(msMinutesLeft / msPerMinutes);
 
-  const msSecondsLeft = (msMinutesLeft + offset) % msPerMinutes;
-  const secondsLeft = Math.round(msSecondsLeft / msPerSeconds);
+  const msSecondsLeft = msMinutesLeft % msPerMinutes;
+  const secondsLeft = Math.floor(msSecondsLeft / msPerSeconds);
 
   return { daysLeft, hoursLeft, minutesLeft, secondsLeft };
 }
