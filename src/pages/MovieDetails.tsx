@@ -1,5 +1,5 @@
-import { Box, Container, Typography } from "@mui/material";
-import { useParams } from "react-router";
+import { Box, Button, Container, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router";
 import PropertyLine from "../Components/PropertyLine";
 import useMovieDetails from "../Hooks/useMovieDetails";
 import { Movie } from "../types";
@@ -26,11 +26,19 @@ const propertyToDisplay: (keyof Movie)[] = [
 ];
 
 export default function MovieDetails() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { movie, loading, error } = useMovieDetails(id as unknown as string);
 
   return (
     <Container>
+      <Button
+        onClick={() => navigate("/rate")}
+        variant="outlined"
+        sx={{ mb: 3 }}
+      >
+        Back
+      </Button>
       {loading || !movie ? (
         <Typography>{error ? error.message : "Loading"}</Typography>
       ) : (
