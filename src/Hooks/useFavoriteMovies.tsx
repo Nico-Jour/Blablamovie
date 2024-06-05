@@ -24,7 +24,7 @@ export default function useFavoriteMovies() {
 
   useEffect(() => {
     fetchFavoriteMovies();
-  }, []);
+  }, [user]);
 
   return { favoriteMovies, loading, error, refetch: fetchFavoriteMovies };
 }
