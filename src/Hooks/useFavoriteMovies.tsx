@@ -11,19 +11,20 @@ export default function useFavoriteMovies() {
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const fetchFavoriteMovies = async () => {
+    try {
+      const movieData = await getFavoriteMovies(user?._id);
+      setFavoriteMovies(movieData);
+    } catch (err) {
+      setError(err as Error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchFavoriteMovies = async () => {
-      try {
-        const movieData = await getFavoriteMovies(user._id);
-        setFavoriteMovies(movieData);
-      } catch (err) {
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchFavoriteMovies();
   }, []);
 
-  return { favoriteMovies, loading, error };
+  return { favoriteMovies, loading, error, refetch: fetchFavoriteMovies };
 }

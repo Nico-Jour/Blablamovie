@@ -5,11 +5,17 @@ import { patchMovieId } from "../APIs/MovieRaterApi/patchMovieId";
 import { UserContext } from "../App";
 import { MoviePreview } from "../types";
 
-export default function MovieCard({ movie }: { movie: MoviePreview }) {
+export default function MovieCard({
+  movie,
+  refetchFavorite,
+}: {
+  movie: MoviePreview;
+  refetchFavorite: () => void;
+}) {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const handleOnCLick = () => {
-    patchMovieId(user._id, movie.imdbID);
+    patchMovieId(user?._id, movie.imdbID, refetchFavorite);
   };
 
   return (

@@ -2,16 +2,19 @@ import { Box, Button, Typography } from "@mui/material";
 import { useContext } from "react";
 import { delMovie } from "../APIs/MovieRaterApi/delMovie";
 import { UserContext } from "../App";
-import useFavoriteMovies from "../Hooks/useFavoriteMovies";
+import { MovieSimple } from "../types";
 
-export default function FavoriteMovies() {
-  // const refetch = new Array();
-  const { favoriteMovies } = useFavoriteMovies();
+export default function FavoriteMovies({
+  favoriteMovies,
+  refetch,
+}: {
+  favoriteMovies: (MovieSimple | null)[];
+  refetch: () => void;
+}) {
   const { user } = useContext(UserContext);
 
   const handleOnCLick = (id: string) => {
-    console.log("id", id, user);
-    if (id && user) delMovie(id, user._id);
+    if (id && user) delMovie(id, user._id, refetch);
   };
 
   return (
@@ -19,26 +22,32 @@ export default function FavoriteMovies() {
       <Typography variant="h5" gutterBottom>
         My Favorite Films
       </Typography>
-      {favoriteMovies?.map((movie) => (
-        <Box mb={3}>
-          <Box display={"flex"}>
-            <Box>
-              <img src={movie?.poster} />
+      {user?._id ? (
+        favoriteMovies?.map((movie) => (
+          <Box mb={3}>
+            <Box display={"flex"}>
+              <Box>
+                <img src={movie?.poster} />
+              </Box>
+              <Box display={"flex"} alignItems={"center"} pl={3}>
+                <Button
+                  variant="outlined"
+                  onClick={() => handleOnCLick(movie!.imdbId!)}
+                >
+                  Remove
+                </Button>
+              </Box>
             </Box>
-            <Box display={"flex"} alignItems={"center"} pl={3}>
-              <Button
-                variant="outlined"
-                onClick={() => handleOnCLick(movie!.imdbId!)}
-              >
-                Remove
-              </Button>
-            </Box>
+            <Typography variant="h6" gutterBottom>
+              {movie?.title}
+            </Typography>
           </Box>
-          <Typography variant="h6" gutterBottom>
-            {movie?.title}
-          </Typography>
-        </Box>
-      ))}
+        ))
+      ) : (
+        <Typography variant="body1">
+          Please sign in to see your favorite movies
+        </Typography>
+      )}
     </Box>
   );
 }

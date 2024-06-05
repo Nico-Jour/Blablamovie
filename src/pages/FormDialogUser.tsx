@@ -49,7 +49,6 @@ export default function FormDialogUser() {
             event.preventDefault();
             const formData = new FormData(event.currentTarget);
             const formJson = Object.fromEntries((formData as any).entries());
-            console.log(formJson);
             createUser(formJson as NewUser);
             handleClose();
           },
@@ -72,7 +71,7 @@ export default function FormDialogUser() {
           <DialogContentText>
             To vote for your favorite movie, please enter your pseudo, email
             address, date of birth here. We will not communicate this data to a
-            another stakeholder.
+            another party.
           </DialogContentText>
           <TextField
             autoFocus

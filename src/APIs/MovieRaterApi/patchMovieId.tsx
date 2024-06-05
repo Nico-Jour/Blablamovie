@@ -1,18 +1,26 @@
 import axiosMovieRater from "./movieRaterAxiosConfig";
 
-export const patchMovieId = async (userId: string, movieId: string) => {
+export const patchMovieId = async (
+  userId: string | undefined,
+  movieId: string,
+  refetchFavorite: () => void
+) => {
   try {
-    const response = await axiosMovieRater.patch(
-      `/movie-list/${movieId}`,
-      {},
-      {
-        headers: {
-          "user-id": userId,
-        },
-      }
-    );
-    console.log("response.data", response.data);
-    return response.data;
+    if (!userId) {
+      console.error("missing userId, please sign in");
+    } else {
+      const response = await axiosMovieRater.patch(
+        `/movie-list/${movieId}`,
+        {},
+        {
+          headers: {
+            "user-id": userId,
+          },
+        }
+      );
+      if (response.data.modifiedCount === 1) refetchFavorite();
+      return response.data;
+    }
   } catch (error) {
     console.error("Error saving favorite movie", error);
     throw error;

@@ -10,11 +10,13 @@ import { useState } from "react";
 import FavoriteMovies from "../Components/FavoriteMovies";
 import Loading from "../Components/Loading";
 import MovieCard from "../Components/MovieCard";
+import useFavoriteMovies from "../Hooks/useFavoriteMovies";
 import useMovieList from "../Hooks/useMovieList";
 
 export default function Rate() {
   const [search, setSearch] = useState("love");
   const { movies, loading, error } = useMovieList(search);
+  const { favoriteMovies, refetch } = useFavoriteMovies();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -44,10 +46,12 @@ export default function Rate() {
           ) : error ? (
             <Typography>{error?.Error}</Typography>
           ) : (
-            movies?.Search.map((movie) => <MovieCard movie={movie} />)
+            movies?.Search.map((movie) => (
+              <MovieCard movie={movie} refetchFavorite={refetch} />
+            ))
           )}
         </Box>
-        <FavoriteMovies />
+        <FavoriteMovies favoriteMovies={favoriteMovies} refetch={refetch} />
       </Box>
     </Container>
   );
