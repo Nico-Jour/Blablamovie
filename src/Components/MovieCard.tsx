@@ -22,7 +22,7 @@ export default function MovieCard({ movie }: { movie: MoviePreview }) {
         >
           <img src={movie.Poster} />
         </Box>
-        <Box display={"flex"} pl={2} m={"auto"}>
+        <Box display={"flex"} alignItems={"center"} pl={3}>
           <Button variant="outlined" onClick={handleOnCLick}>
             Vote!
           </Button>

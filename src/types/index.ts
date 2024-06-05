@@ -62,11 +62,12 @@ export type User = {
 };
 
 export type UserContextType = {
-  user: User | User;
+  user: User | null;
   setUser: Dispatch<React.SetStateAction<User | null>>;
 };
 
 export type MovieSimple = {
   title: string;
   poster: string;
+  imdbId?: string;
 };

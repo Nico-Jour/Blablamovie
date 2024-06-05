@@ -23,31 +23,32 @@ export default function Rate() {
   };
 
   return (
-    <Container sx={{ display: "flex" }}>
-      <Box>
-        <Box pb={3} mb={3} sx={{ borderBottom: "1px solid lightblue" }}>
-          <FormControl defaultValue={""} required>
-            <InputLabel>Search</InputLabel>
-            <Input
-              id="search"
-              onKeyDown={handleKeyDown}
-              placeholder="Search by title here"
-            />
-          </FormControl>
-        </Box>
-        <Box>
-          <Box>
-            {loading ? (
-              <Loading />
-            ) : error ? (
-              <Typography>{error?.Error}</Typography>
-            ) : (
-              movies?.Search.map((movie) => <MovieCard movie={movie} />)
-            )}
-          </Box>
-        </Box>
+    <Container>
+      <Box pb={3} mb={3} sx={{ borderBottom: "1px solid lightblue" }}>
+        <FormControl defaultValue={""}>
+          <InputLabel>Search</InputLabel>
+          <Input
+            id="search"
+            onKeyDown={handleKeyDown}
+            placeholder="Search by title here"
+          />
+        </FormControl>
       </Box>
-      <FavoriteMovies />
+      <Box display={"flex"}>
+        <Box m={3} flex={1}>
+          <Typography variant="h5" gutterBottom>
+            Results
+          </Typography>
+          {loading ? (
+            <Loading />
+          ) : error ? (
+            <Typography>{error?.Error}</Typography>
+          ) : (
+            movies?.Search.map((movie) => <MovieCard movie={movie} />)
+          )}
+        </Box>
+        <FavoriteMovies />
+      </Box>
     </Container>
   );
 }

@@ -5,7 +5,7 @@ import useBestMovie from "../Hooks/useBestMovie";
 export default function ProvisoryBestMovie() {
   const [showProvisoryBest, setShowProvisoryBest] = useState(false);
   const { movie: bestMovie } = useBestMovie();
-  console.log(bestMovie);
+
   return (
     <>
       {showProvisoryBest && bestMovie ? (

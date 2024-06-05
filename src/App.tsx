@@ -2,7 +2,7 @@ import { useState } from "react";
 import MainLayout from "./Layouts/MainLayout";
 
 import { createContext } from "react";
-import { UserContextType } from "./types";
+import { User, UserContextType } from "./types";
 
 export const UserContext = createContext<UserContextType>({
   user: null,
@@ -10,7 +10,7 @@ export const UserContext = createContext<UserContextType>({
 });
 
 function App() {
-  const [user, setUser] = useState<null | string>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
